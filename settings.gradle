@@ -1,2 +1,4 @@
 rootProject.name = 'manga-slime'
 
+includeBuild 'server'
+includeBuild 'api-gateway'
