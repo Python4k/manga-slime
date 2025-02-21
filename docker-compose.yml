@@ -22,6 +22,17 @@ services:
     networks:
       - microservice
 
+  api_gateway:
+    depends_on:
+      - discovery_server
+    build:
+      context: api-gateway/.
+      dockerfile: ./Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - microservice
+
 volumes:
   pg_users:
 
