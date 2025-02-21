@@ -1,0 +1,29 @@
+version: "3.1"
+
+services:
+  users_db:
+    image: postgres
+    restart: always
+    env_file:
+      - .env-dev
+    environment:
+      - POSTGRES_DB=users
+    volumes:
+      - pg_users:/var/lib/postgres/data
+    ports:
+      - "5433:5432"
+
+  discovery_server:
+    build:
+      context: server/.
+      dockerfile: ./Dockerfile
+    ports:
+      - "8761:8761"
+    networks:
+      - microservice
+
+volumes:
+  pg_users:
+
+networks:
+  microservice:
